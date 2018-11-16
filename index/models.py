@@ -2,15 +2,19 @@ from django.db import models
 
 # Create your models here.
 
-class Openedu:
+class OpenEduDB(models.Model):
+    id = models.CharField(primary_key=True, max_length=45)
+    date_joined = models.CharField(max_length=45)
 
     class Meta:
-        app_label = 'openedudb'
-        db_table = 'index_openedu'
+        managed = False
+        db_table = 'auth_user'
 
 
-class  Resultdb:
+class ResultDB(models.Model):
+    課程代碼 = models.CharField(primary_key=True, max_length=45)
 
     class Meta:
-        app_label = 'resultdb'
-        db_table = 'index_result'
+        managed = False
+        db_table = 'course_total_data_v2'
+

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import pymysql
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,13 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'googlecharts',
     'cookiegetter',
     'index',
-    'localdb',
-    'resultdb',
-    'selabdb',
-    'surveydb',
-    'openedudb',
+    'try1',
+    'BasicCourseData',
+    'MovieData',
+    'ForumData',
+    'practive',
+    'Glossary',
+    'AnalysisStudent',
+    'AnalysisGroup',
+    'AnalysisCourse',
+    'AnalysisData',
+    'certificate',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +69,7 @@ ROOT_URLCONF = 'openedu_dashboard_admin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,66 +88,111 @@ WSGI_APPLICATION = 'openedu_dashboard_admin.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-import pymysql
+
 pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {},
 
     'LocalDB': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'survey',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
+        'NAME': 'edxresult',
+        'USER': 'root',
+        'PASSWORD': 'qqaa8888',
+        'HOST': 'localhost',
         'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'survey',
+        # 'USER': '',
+        # 'PASSWORD': '',
+        # 'HOST': '127.0.0.1',
+        # 'PORT': '3306',
     },
 
     'OpenEduDB': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'edxapp',
-        'USER': 'fcu',
-        'PASSWORD': 'Open',
-        'HOST': '127.0.0.1',
-        'PORT': '3302',
+        'NAME': 'edxresult',
+        'USER': 'root',
+        'PASSWORD': 'qqaa8888',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'edxapp',
+        # 'USER': 'fcu',
+        # 'PASSWORD': 'hq1EvnJs+v73UybA45Bd5q1fDP2bvl4b7YobLYD7iamJ9dLDY5Qa8fKsyVj59UjF',
+        # 'HOST': '127.0.0.1',
+        # 'PORT': '3302',
+
     },
 
     'ResultDB': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'edxresult',
-        'USER': 'student',
-        'PASSWORD': '264c8c381bf16c982a4e59b0dd4c6f7808c51a05f64c35db42cc78a2a72875bb',
-        'HOST': 'w4.cloud2.openedu.tw',
-        'PORT': '3309',
+        'USER': 'root',
+        'PASSWORD': 'qqaa8888',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'edxresult',
+        # 'USER': 'student',
+        # 'PASSWORD': '264c8c381bf16c982a4e59b0dd4c6f7808c51a05f64c35db42cc78a2a72875bb',
+        # 'HOST': '192.168.1.11',
+        # 'PORT': '3309',
+
     },
 
     'SelabDB': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ShareCourse',
-        'USER': 'student',
-        'PASSWORD': '264c8c381bf16c982a4e59b0dd4c6f7808c51a05f64c35db42cc78a2a72875bb',
-        'HOST': '140.134.26.84',
-        'PORT': '3309',
+        'NAME': 'edxresult',
+        'USER': 'root',
+        'PASSWORD': 'qqaa8888',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'ShareCourse',
+        # 'USER': 'student',
+        # 'PASSWORD': '264c8c381bf16c982a4e59b0dd4c6f7808c51a05f64c35db42cc78a2a72875bb',
+        # 'HOST': '140.134.26.84',
+        # 'PORT': '3309',
     },
 
     'SurveyDB': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'survey',
-        'USER': 'student',
-        'PASSWORD': '264c8c381bf16c982a4e59b0dd4c6f7808c51a05f64c35db42cc78a2a72875bb',
-        'HOST': '172.17.0.4',
+        'NAME': 'edxresult',
+        'USER': 'root',
+        'PASSWORD': 'qqaa8888',
+        'HOST': 'localhost',
+        'PORT': '3306',
+
+
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'survey',
+        # 'USER': 'student',
+        # 'PASSWORD': '264c8c381bf16c982a4e59b0dd4c6f7808c51a05f64c35db42cc78a2a72875bb',
+        # 'HOST': '192.168.1.11',
+        # 'PORT': '3309',
+
+    },
+
+    'test1': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'edxresult',
+        'USER': 'root',
+        'PASSWORD': 'qqaa8888',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
-DATABASE_ROUTERS = ['openedu_dashboard_admin.database_router.DatabaseAppsRouter']
+# DATABASE_ROUTERS = ['openedu_dashboard_admin.database_router.DatabaseAppsRouter']
 
+'''
 DATABASE_APPS_MAPPING = {
-    'openedudb': 'OpenEduDB',
-    'resultdb': 'ResultDB',
-    'localdb': 'LocalDB',
-    'selabdb': 'SelabDB',
-    'surveydb': 'SurveyDB',
+   'openedudb': 'OpenEduDB',
+   'resultdb': 'ResultDB',
+   'localdb': 'LocalDB',
+   'selabdb': 'SelabDB',
+   'surveydb': 'SurveyDB',
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -178,3 +231,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join("D:/Anley/PyCharm/openedu_dashboard_admin/static/"),
+)
+STATICFILES_FINDERS = {
+'django.contrib.staticfiles.finders.FileSystemFinder',
+'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+}
